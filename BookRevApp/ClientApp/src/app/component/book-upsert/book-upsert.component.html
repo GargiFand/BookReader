@@ -1,0 +1,158 @@
+
+<div id="changeBackgroundBookC">
+  <form [formGroup]="bookForm">
+    <div class="form-group">
+      <label class="font-weight-bold">Title</label>
+      <input type="text"
+             class="form-control form-control-sm book"
+             name="title"
+             formControlName="title"
+             required>
+      <div *ngIf="bookForm.controls['title'].invalid && (bookForm.controls['title'].dirty || bookForm.controls['title'].touched)" class="text-danger">
+        <div *ngIf="bookForm.controls['title'].errors.required">
+          Title is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-weight-bold">Author</label>
+      <input type="text"
+             class="form-control form-control-sm book"
+             name="author"
+             formControlName="author"
+             required>
+      <div *ngIf="bookForm.controls['author'].invalid && (bookForm.controls['author'].dirty || bookForm.controls['author'].touched)" class="text-danger">
+        <div *ngIf="bookForm.controls['author'].errors.required">
+          Author is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-weight-bold">Year</label>
+      <input type="number"
+             class="form-control book"
+             name="year"
+             formControlName="year"
+             required>
+      <div *ngIf="bookForm.controls['year'].invalid && (bookForm.controls['year'].dirty || bookForm.controls['year'].touched)" class="text-danger">
+        <div *ngIf="bookForm.controls['year'].errors.required">
+          Year is required.
+        </div>
+        <div *ngIf="bookForm.controls['year'].errors.min">
+          Year must be greater than 1900.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-weight-bold">Year</label>
+      <input type="text"
+             class="form-control book"
+             name="author"
+             formControlName="author"
+             required>
+      <div *ngIf="bookForm.controls['author'].invalid && (bookForm.controls['author'].dirty || bookForm.controls['author'].touched)" class="text-danger">
+        <div *ngIf="bookForm.controls['author'].errors.required">
+          Author is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-weight-bold">Description</label>
+      <textarea name="description"
+                class="form-control book"
+                formControlName="description"
+                required>
+    </textarea>
+      <div *ngIf="bookForm.controls['description'].invalid && (bookForm.controls['description'].dirty || bookForm.controls['description'].touched)" class="text-danger">Enter a description of the book.</div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-weight-bold">Earnings Amount</label>
+      <input type="number"
+             class="form-control book"
+             name="earnings"
+             formControlName="earnings"
+             required>
+      <div *ngIf="bookForm.controls['earnings'].invalid && (bookForm.controls['earnings'].dirty || bookForm.controls['earnings'].touched)" class="text-danger">
+        <div *ngIf="bookForm.controls['earnings'].errors.required">
+          Earnings required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-weight-bold">Available in electronic format&nbsp;&nbsp; </label>
+
+      <input class="radio-button"
+             type="radio"
+             name="isElectronicFormat"
+             [value]="true"
+             required
+             formControlName="isElectronicFormat"> Yes&nbsp;
+      <input class="radio-button"
+             type="radio"
+             name="isElectronicFormat"
+             [value]="false"
+             required
+             formControlName="isElectronicFormat"> No
+    </div>
+
+    <div class="form-group">
+      <label class="font-weight-bold">Genre</label>
+      <select name="genre" formControlName="genre" class="form-control book" required>
+        <option value="Finction">Finction</option>
+        <option value="Poetry">Poetry</option>
+        <option value="Narrative">Narrative</option>
+        <option value="Encyclopedia">Encyclopedia</option>
+        <option value="Historical">Historical</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Romance">Romance</option>
+        <option value="Biography">Biography</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="Psychology">Psychology</option>
+        <option value="PersonalDevelopment">PersonalDevelopment</option>
+      </select>
+      <div *ngIf="bookForm.controls['genre'].invalid && (bookForm.controls['genre'].dirty || bookForm.controls['genre'].touched)" class="text-danger">
+        <div *ngIf="bookForm.controls['genre'].errors.required">
+          Genre is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="font-weight-bold">Picture Url</label>
+      <input type="text"
+             name="pictureUrl"
+             class="form-control book"
+             formControlName="pictureURL"
+             required>
+      <div *ngIf="bookForm.controls['pictureURL'].invalid && (bookForm.controls['pictureURL'].dirty || bookForm.controls['pictureURL'].touched)" class="text-danger">
+        <div *ngIf="bookForm.controls['pictureURL'].errors.required">
+          Picture url is required.
+        </div>
+        <div *ngIf="bookForm.controls['pictureURL'].errors.pattern">
+          Enter a valid url!
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-sm btn-primary mr-3"
+              type="button"
+              [disabled]="!bookForm.valid"
+              (click)="submitBookData()">
+        {{ submitLabel }}
+      </button>
+      <button class="btn btn-sm btn-secondary"
+              type="button"
+              (click)="redirectToViewBooks()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+

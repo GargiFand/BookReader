@@ -1,0 +1,78 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/alertifyjs/build/css/alertify.min.css';
+@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+html, body {
+  height: 100%;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+body {
+  font-size: 16px;
+}
+
+.hidescrollbar{
+    overflow:hidden;
+}
+
+.navbar {
+  margin-bottom: 0 !important;
+}
+
+a {
+  color: #0366d6;
+  color: green;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.ajs-button {
+  border-radius: 5px;
+}
+
+.ajs-button.ajs-ok {
+  color: #007bff;
+  background-color: transparent;
+  border-color: #007bff;
+}
+
+.ajs-button.ajs-ok:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.ajs-button.ajs-cancel {
+  color: #6c757d;
+    background-color: transparent;
+    border-color: #6c757d;
+}
+
+.ajs-button.ajs-cancel:hover {
+  color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.book-list-background { 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-width: 1024px;
+  width: 100%;
+}
+
+.book-list-background::-webkit-scrollbar {
+  display: none;
+}

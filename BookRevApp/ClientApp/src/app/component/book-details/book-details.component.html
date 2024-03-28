@@ -1,0 +1,120 @@
+<div *ngIf="currentBook" class="container" id="details">
+    <div class="jumbotron">
+        <h1>{{ currentBook.title }}</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7" id="bookDetails">
+          <h4><b>Details:</b></h4>
+          <h5><b>Year: </b>{{ currentBook.year }}</h5>
+          <h5><b>Author: </b>{{ currentBook.author }}</h5>
+          <h5><b>Description: </b>{{ currentBook.description }}</h5>
+          <h5><b>Earnings: </b>{{ currentBook.earnings }}</h5>
+          <h5><b>Available in electronic format: </b>{{ currentBook.isElectronicFormat }}</h5>
+          <h5><b>Genre: </b>{{ currentBook.genre }}</h5>
+          <h5 *ngIf="currentBook.rating != 0">
+            <b>Rating:</b> {{ currentBook.rating }}<span class="mr-4"></span>
+            <fa *ngFor="let item of constructEmptyArray(currentBook.rating)" class="rating-list star" name="star"><i class="fa fa-star"></i></fa>
+          </h5>
+          <h5 *ngIf="currentBook.rating == 0"><b>Rating: </b>Not rated yet</h5>
+          <hr />
+          
+          <div class="row" id="book-details-btn">
+            <div class="col-sm-12">
+              <div *ngIf="!addCommentMode && isUserLoggedIn" class="col-sm-6" id="add-comment-btn">
+                <button class="btn btn-outline-primary btn-sm " type="button" (click)="commentFormToggle()">
+                  Add Comment
+                </button>
+                <button id="addFavourite" *ngIf="!isAddToFavouriteButtonDisabled" class="btn btn-outline-info btn-sm " type="button" (click)="addToFavourites()">
+                  <i class="fa fa-plus mr-1"></i>
+                  Add to Favourites
+                </button>
+              </div>
+
+              <div class="col-sm-6" id="crud-book-btn">
+                <button *ngIf="currentUserRole == 'Admin'" class="btn btn-outline-danger btn-sm" type="button"
+                        (click)="initializeDeleteBook()">
+                  Delete
+                  Book
+                </button>
+                <button *ngIf="currentUserRole == 'Admin'" class="btn btn-outline-warning btn-sm" type="button"
+                        (click)="initializeUpdateBook()">
+                  Update
+                  Book
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <div *ngIf="isOpen">
+            <app-book-upsert [selectedBook]="currentBook" [submitLabel]="label" (onSubmit)="reloadData()">
+            </app-book-upsert>
+          </div>
+        
+          <div *ngIf="isUserLoggedIn">
+            <hr />
+            <h4><b>Your rating:</b></h4>
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="list-inline rating-list" *ngFor="let rating of ratings">
+                  <li (mouseenter)="hoverIndex=rating"
+                      (mouseleave)="hoverIndex=-1"
+                      (click)="sendRating(rating)"
+                      [ngClass]="{'selected': rating <= lastRatingValue, 'hovered': rating <= hoverIndex}">
+                    <i class="fa fa-star"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h4 *ngIf="currentBook.userComments.length > 0">Comments:</h4>
+          <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="currentBook.userComments.length > 0">
+            <thead>
+              <tr>
+                <th style="width: 10%;">Username</th>
+                <th style="width: 40%;">Text</th>
+                <th style="width: 20%;">Added On</th>
+                <th style="width: 30%;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let comment of currentBook.userComments">
+                <td>{{ comment.username }}</td>
+                <td>{{ comment.text }}</td>
+                <td>{{ comment.whenAdded | timeAgo }}</td>
+                <td>
+                  <a *ngIf="comment.username === loggedUser" class="btn btn-outline-primary btn-sm mr-3"
+                     (click)="updateCommentFormToggle(comment)">Update</a>
+                  <a *ngIf="comment.username === loggedUser" class="btn btn-outline-danger btn-sm"
+                     (click)="deleteComment(comment.id)" (onSubmit)="reloadData()">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="addCommentMode">
+            <app-add-comment [currentBook]="currentBook" (onSubmit)="addCommentPassChild()"
+                             (onClose)="closeFormAtCancel()">
+            </app-add-comment>
+          </div>
+          <div *ngIf="updateCommentMode">
+            <app-update-comments [currentBook]="currentBook" [comment]="currentComment"
+                                 (onSubmit)="reloadData()" (onClose)="closeUpdateFormAtCancel()">
+            </app-update-comments>
+            <hr />
+          </div>
+          <div> <button id="backBtn" class="btn btn-primary" type="button" (click)="goBack()"><i class="fa fa-arrow-left"></i></button></div>
+
+        </div>
+        <hr />
+        <div class="col-lg-5">
+          <div class="text-center">
+            <img src="{{ currentBook.pictureURL }}" class="img-fluid" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+   
+</div>

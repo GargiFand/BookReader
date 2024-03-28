@@ -1,0 +1,87 @@
+#details h4{
+    font-size:  1.3rem!important;
+}
+#details h5 {
+  font-size: 1rem !important;
+}
+
+#details .jumbotron {
+  background-image: url(https://images.wallpaperscraft.com/image/book_garland_light_134006_1280x720.jpg);
+  background-size: cover;
+  /*background-image: linear-gradient(to right top, #838383, #85858b, #878793, #878a9b, #868da3, #8696b2, #82a0c0, #7cabcd, #70bfe0, #62d3ec, #58e8f2, #5ffbf1);*/
+}
+#bookDetails {
+  background-color: #f8f8f8;
+}
+
+#details h1 {
+  text-align: center;
+  color: #e9e3e3;
+}
+
+button {
+    margin-right: 10px;
+}
+
+.rating-list li {
+    float: right;
+    color: #ddd;
+    padding: 5px 5px;
+}
+  
+.rating-list li.selected,
+.rating-list li.hovered,
+.rating-list li:hover { 
+    color: #ffd700;
+    cursor: pointer;
+}
+  
+.rating-list {
+    display: inline-block;
+    list-style: none;
+}
+#bookDetails {
+  -webkit-box-shadow: 0px 4px 21px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 4px 21px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 4px 21px 0px rgba(0,0,0,0.75);
+  padding: 2rem;
+}
+
+#bookDetails h4 {
+    margin-bottom: 20px;
+    margin-top:20px;
+}
+
+.rating-list.star {
+  color: #ffd700;
+}
+
+#crud-book-btn, #add-comment-btn {
+  display: inline;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+#book-details-btn {
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  #details .jumbotron {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    margin-right: -15px!important;
+  }
+}
+
+.img-fluid {
+  max-height: 470px;
+  width: auto;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 1600px) {
+  .img-fluid {
+    max-height: 680px;
+  }
+}

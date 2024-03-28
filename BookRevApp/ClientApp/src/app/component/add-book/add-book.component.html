@@ -1,0 +1,10 @@
+<div class="container" id="add-book-style">
+  <div class="col-sm-10 offset-sm-1 jumbotron"><h1>Book Informations</h1></div>
+  <div class="col-sm-10 offset-sm-1 changeBackgroundBookChild py-5">
+    <app-book-upsert [selectedBook]="book"
+                      [submitLabel]="label"
+                      (onSubmit)="reloadData($event)">
+    </app-book-upsert>
+  </div>
+
+</div>
